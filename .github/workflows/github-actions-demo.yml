@@ -1,4 +1,9 @@
 name: GitHub Actions Demo
+## for every push, pull or schedule or click of manual run,  it runs the job build
+##	• on every push to the main branch, but not when there are changes to files in the .github folder.
+##	• on every pull request with main as the base branch
+##	• Every sunday at 6:15 UTC
+## Manually
 on:
   push:
     branches: [ main ]
