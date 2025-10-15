@@ -1,8 +1,3 @@
-# on every push to the main branch, but not when there are changes to files in the .github folder.
-# on every pull request with main as the base branch
-# Every sunday at 6:15 UTC
-# Manually
-
 name: GitHub Actions Demo
 on:
   push:
