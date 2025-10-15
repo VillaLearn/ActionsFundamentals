@@ -6,10 +6,20 @@ on:
   pull_request:
       branches: [ main]
   schedule:
-      - cron: "0 2 * * 1-5"
+      - cron: '0 2 * * 1-5'
   workflow_dispatch:
-
-  jobs:
-  my_job:
-    name: deploy to staging
-    runs-on: ubuntu-latest
+jobs:
+  Build:
+     runs-on: ubuntu-latest
+     steps:
+        - run: |
+            echo "🎉 The job was triggered by event: ${{ github.event_name }}"
+            echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ."
+          
+        - uses: actions/checkout@v3.0.2
+  
+        - name: List files in the repository
+          run: |
+            echo "The repository ${{ github.repository }} contains the following files:"
+            tree
+       
