@@ -5,4 +5,12 @@
 # Manually
 
 name: GitHub Actions Demo
-build: 
+on:
+  push:
+    branches: [ main ]
+    paths-ignore: [.github/88]
+  pull_request:
+      branches:
+      - main
+  schedule:
+  - cron: "0 2 * * 1-5"
