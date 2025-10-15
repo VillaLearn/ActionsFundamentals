@@ -8,3 +8,8 @@ on:
   schedule:
       - cron: "0 2 * * 1-5"
   workflow_dispatch:
+
+  jobs:
+  my_job:
+    name: deploy to staging
+    runs-on: ubuntu-latest
