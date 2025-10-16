@@ -4,7 +4,7 @@ on: [workflow_dispatch]
 
 jobs:
   call-workflow:
-    uses: ./.github/workflows/reusable-workflow.yml
+    uses: ./.github/workflows/Reusable-workflow.yml
     with: 
       who-to-greet: '@friday'
   use-output:
