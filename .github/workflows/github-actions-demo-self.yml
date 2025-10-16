@@ -23,7 +23,7 @@ on:
    
 jobs:
   Build:
-     runs-on: selrunner1
+     runs-on: self-hosted
      steps:
         - run: |
             echo "🎉 The job was triggered by event: ${{ github.event_name }}"
@@ -37,7 +37,7 @@ jobs:
             tree
             
   Test:
-      runs-on: selrunner1
+      runs-on: self-hosted
       if: github.event_name == 'workflow_dispatch' 
       needs: Build
       environment: Test
@@ -45,7 +45,7 @@ jobs:
         - run: echo "🧪 Testing..."
       
   Load-Test:
-      runs-on: selrunner1
+      runs-on: self-hosted
       if: github.event_name == 'workflow_dispatch' 
       needs: Build
       environment: Load-Test
@@ -55,7 +55,7 @@ jobs:
             sleep 15
           
   Production:
-      runs-on: selrunner1
+      runs-on: self-hosted
       needs: [Test, Load-Test]
       environment: 
         name: Production
