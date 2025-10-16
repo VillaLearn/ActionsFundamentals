@@ -1,9 +1,11 @@
-name: GitHub Actions Demo
+name: GitHub Actions Demo self
 ## for every push, pull or schedule or click of manual run,  it runs the job build
 ##	• on every push to the main branch, but not when there are changes to files in the .github folder.
 ##	• on every pull request with main as the base branch
 ##	• Every sunday at 6:15 UTC
 ## Manually
+##
+## using my self runner selrunner1 in places of ubuntu-latest
 on:
   push:
     branches: [ main ]
@@ -21,11 +23,11 @@ on:
    
 jobs:
   Build:
-     runs-on: ubuntu-latest
+     runs-on: self-hosted
      steps:
         - run: |
             echo "🎉 The job was triggered by event: ${{ github.event_name }}"
-            echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ."
+            echo '🔎 The name of your branch is ${{ github.ref }} and your repository is .'
           
         - uses: actions/checkout@v3.0.2
   
@@ -35,7 +37,7 @@ jobs:
             tree
             
   Test:
-      runs-on: ubuntu-latest
+      runs-on: self-hosted
       if: github.event_name == 'workflow_dispatch' 
       needs: Build
       environment: Test
@@ -43,7 +45,7 @@ jobs:
         - run: echo "🧪 Testing..."
       
   Load-Test:
-      runs-on: ubuntu-latest
+      runs-on: self-hosted
       if: github.event_name == 'workflow_dispatch' 
       needs: Build
       environment: Load-Test
@@ -53,7 +55,7 @@ jobs:
             sleep 15
           
   Production:
-      runs-on: ubuntu-latest
+      runs-on: self-hosted
       needs: [Test, Load-Test]
       environment: 
         name: Production

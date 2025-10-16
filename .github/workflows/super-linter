@@ -1,0 +1,40 @@
+name: "Super-Linter (Pull Requests)"
+
+# Run Super-Linter on pull requests to validate code before merge
+on:
+  pull_request:
+    # optionally ignore docs only changes
+    paths-ignore:
+      - 'docs/**'
+
+jobs:
+  super-linter:
+    name: Super-Linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Super-Linter
+        uses: github/super-linter@v5
+        env:
+          # Required by the action to post status/comments
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          # Validate only files changed in the PR by default
+          VALIDATE_ALL_CODEBASE: false
+
+          # Optional: set your default branch name (used by the linter to compare diffs)
+          DEFAULT_BRANCH: main
+
+          # Optional toggles you can override later in .github/.super-linter.yml
+          LINT_YAML: true
+          LINT_MARKDOWN: true
+          LINT_SHELL: true
+          LINT_JS: true
+          LINT_PYTHON: true
+
+        # args can be used to pass extra flags to the linter container if needed.
+        # Example: args: "--no-error-on-unmatched-pattern"
+
